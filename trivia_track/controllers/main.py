@@ -12,6 +12,7 @@ from math import ceil
 from odoo import fields, http, SUPERUSER_ID
 from odoo.http import request
 from odoo.tools import ustr
+import random
 
 _logger = logging.getLogger(__name__)
 
@@ -23,7 +24,6 @@ headers_response = [
 
 
 class triviaControllers(http.Controller):
-
     @http.route('/home/trivias', auth='public', method=['GET'], type='http', website=True)
     def trivia(self):
         return request.render('trivia_track.page_trivia', {})
@@ -36,17 +36,36 @@ class triviaControllers(http.Controller):
     def trivia(self, **kw):
         return request.render('trivia_track.page_rifa', {})
 
-    @http.route('/page/folioAleatorio', auth='user', type='http', website=True)
+    @http.route('/page/folioAleatorio', auth='user', type='http', website=True, csrf=False)
     def folioAleatorio(self):
+        folios = []
+        ids = []
+        while len(folios) < 3:
+            total = request.env['oohel.trivia_track'].sudo().search_count([])
+            request.env.cr.execute(""" select min(t.id)as menor,max(t.id) as mayor
+                                  from oohel_trivia_track as  t
+                                limit 1""")
+            result = request.env.cr.fetchone()
 
-        request.env.cr.execute(""" select t.name as folio from oohel_trivia_track as  t
-                              INNER JOIN res_users as u on u.id =t.user_id
-                                order by RANDOM() LIMIT 1;  """)
-        folio = request.env.cr.fetchone()
+            min = result[0]
+            max = result[1]
+            if total:
+                while True:
+                    temp_id = random.randint(min, max)
+                    print(temp_id)
+                    folio = request.env['oohel.trivia_track'].sudo().search(
+                        [('id', '=', temp_id)], limit=1)
+                    if folio:
+                        folios.append({
+                            'folio': folio.name,
+                            'user': folio.user_id.name
+                        })
+                        #folio.active = False
+                        break
 
         return request.make_response(json.dumps({'state': 200,
                                                  'message': 'Se registro correctamente la trivia',
-                                                 'folio': folio
+                                                 'folio': folios
                                                  }),
                                      headers=headers_response)
 
@@ -87,7 +106,7 @@ class triviaControllers(http.Controller):
         print(range(0, total))
         for i in range(0, total):
             print("AAAAAA---------------->>>>")
-            folio = request.env['core_generador_folio'].sudo().getFolio("SSL-")
+            folio = request.env['oohel.core_generador_folio'].sudo().getFolio("SSL-")
             print(folio)
             request.env['oohel.trivia_track'].sudo().create({
                 'user_id': id_usuario,

@@ -16,7 +16,10 @@ class TriviaTrack(models.Model):
                               'Propietario',
                               required=True, default=lambda self: self.env.user)
     fecha = fields.Datetime(string='Fecha', default=lambda self: fields.Datetime.now())
-
+    active = fields.Boolean(
+        string='Activo',
+        default=True
+    )
 
 
 class usuarioTrivia(models.Model):

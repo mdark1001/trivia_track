@@ -39,7 +39,7 @@ class triviaControllers(http.Controller):
     @http.route('/page/folioAleatorio', auth='user', type='http', website=True, csrf=False)
     def folioAleatorio(self):
         folios = []
-        ids = []
+        users_ids = set()
 
         while len(folios) < 3:
             random.seed()
@@ -57,15 +57,21 @@ class triviaControllers(http.Controller):
                     print(temp_id)
                     folio = request.env['oohel.trivia_track'].sudo().search(
                         [('id', '=', temp_id)], limit=1)
+
                     if folio.exists():
-                        folios.append({
-                            'folio': folio.name,
-                            'user': folio.user_id.name
-                        })
-                        folio.sudo().write({
-                            'active': False
-                        })
-                        break
+                        if folio.user_id.id not in users_ids:
+
+                            folios.append({
+                                'folio': folio.name,
+                                'user': folio.user_id.name
+                            })
+                            folio.sudo().write({
+                                'active': False
+                            })
+                            users_ids.add(folio.user_id.id)
+                            break
+                        else:
+                            continue
 
         return request.make_response(json.dumps({'state': 200,
                                                  'message': 'Se registro correctamente la trivia',

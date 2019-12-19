@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="core_trivia_track_tree" model="ir.ui.view">
+            <field name="name">Trivia track</field>
+            <field name="model">oohel.trivia_track</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="fecha"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="core_trivia_track_graph" model="ir.ui.view">
+            <field name="name">Usuario trivia</field>
+            <field name="model">oohel.trivia_track</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="user_id"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="core_trivia_track_action" model="ir.actions.act_window">
+            <field name="name">Trivia track</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">oohel.trivia_track</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <record id="oohel_usuario_trivia_tree" model="ir.ui.view">
+            <field name="name">Usuario trivia</field>
+            <field name="model">oohel.usuario_trivia</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="user_id"/>
+                    <field name="total"/>
+                    <field name="fecha"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="oohel_usuario_trivia_action" model="ir.actions.act_window">
+            <field name="name">Usuario trivia</field>
+            <field name="res_model">oohel.usuario_trivia</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

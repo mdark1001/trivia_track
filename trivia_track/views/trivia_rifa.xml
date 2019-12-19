@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="trivia_rifa_wizard_folios_acrion">
+            <field name="name">trivia_rifa_wizard</field>
+            <field name="model">trivia_rifa</field>
+            <field name="arch" type="xml">
+                <form string="Actualizar estadisticas">
+                    <group col="2" colspan="2">
+                        <field name="user_id"/>
+                        <field name="total"/>
+                    </group>
+                    <footer>
+                        <button name="asignar_folios" type="object"
+                                string="Aceptar" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancelar"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="trivia_rifa_wizard_folios_acrion_wrd"
+                    name="Asignar folios base"
+                    src_model="oohel.usuario_trivia"
+                    res_model="trivia_rifa"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"
+        />
+
+    </data>
+</odoo>

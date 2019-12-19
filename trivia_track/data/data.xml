@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="fomato_folio_rifa" model="core_formato_folio">
+            <field name="formato">{prefijo}{formato_fecha}{contador}</field>
+        </record>
+         <record id="folio_rifa_1" model="core_generador_folio">
+            <field name="nombre_folio">Folio para rifa</field>
+            <field name="prefijo">SSL-</field>
+            <field name="contador">0</field>
+            <field name="incrementar">1</field>
+            <field name="numero_zeros">3</field>
+            <field name="formato_fecha">%s</field>
+            <field name="tipo_folio_id" ref="fomato_folio_rifa"/>
+        </record>
+    </data>
+</odoo>

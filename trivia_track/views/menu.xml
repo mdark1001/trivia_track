@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="core_trivia_track" name="Trivia Track"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="core_trivia_track_act" name="Trivia track" parent="core_trivia_track"
+                  action="core_trivia_track_action"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="core_usuario_trivia_track_act" name="Usuarios trivia" parent="core_trivia_track"
+                  action="oohel_usuario_trivia_action"/>
+
+    </data>
+</odoo>

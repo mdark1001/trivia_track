@@ -17,7 +17,8 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base',
-                'generar_folios'
+                'generardor_folio'
+                ],
                 ],
     'data': [
         'security/ir.model.access.csv',

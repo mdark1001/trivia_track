@@ -19,7 +19,6 @@
     'depends': ['base',
                 'generardor_folio'
                 ],
-                ],
     'data': [
         'security/ir.model.access.csv',
         'views/trivia_track.xml',

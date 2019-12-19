@@ -25,7 +25,6 @@
 
         <record id="core_trivia_track_action" model="ir.actions.act_window">
             <field name="name">Trivia track</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">oohel.trivia_track</field>
             <field name="view_mode">tree,form,graph</field>
             <field name="help" type="html">
@@ -38,7 +37,7 @@
             <field name="name">Usuario trivia</field>
             <field name="model">oohel.usuario_trivia</field>
             <field name="arch" type="xml">
-                <tree string="">
+                <tree>
                     <field name="user_id"/>
                     <field name="total"/>
                     <field name="fecha"/>

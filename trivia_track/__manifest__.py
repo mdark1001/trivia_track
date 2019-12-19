@@ -17,15 +17,17 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base',
-                'board',
-                'generar_folios'],
+                'generar_folios'
+                ],
     'data': [
+        'security/ir.model.access.csv',
         'views/trivia_track.xml',
         'views/page_trivia.xml',
-        'views/trivia_rifa.xml',
         'views/rifa.xml',
         'data/data.xml',
         'views/menu.xml',
+        'views/trivia_rifa.xml',
+
     ],
     'qweb': ['static/src/xml/*.xml'],
 }

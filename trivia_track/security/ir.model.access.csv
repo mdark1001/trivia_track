@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_all_oohel_trivia_track,access_all_oohel_trivia_track,model_oohel_trivia_track,,1,1,1,1
+access_all_oohel_usuario_trivia,access_all_oohel_usuario_trivia,model_oohel_usuario_trivia,,1,1,1,1

@@ -40,7 +40,9 @@ class triviaControllers(http.Controller):
     def folioAleatorio(self):
         folios = []
         ids = []
+
         while len(folios) < 3:
+            random.seed()
             total = request.env['oohel.trivia_track'].sudo().search_count([])
             request.env.cr.execute(""" select min(t.id)as menor,max(t.id) as mayor
                                   from oohel_trivia_track as  t

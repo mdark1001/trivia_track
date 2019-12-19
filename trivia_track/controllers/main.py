@@ -55,12 +55,14 @@ class triviaControllers(http.Controller):
                     print(temp_id)
                     folio = request.env['oohel.trivia_track'].sudo().search(
                         [('id', '=', temp_id)], limit=1)
-                    if folio:
+                    if folio.exists():
                         folios.append({
                             'folio': folio.name,
                             'user': folio.user_id.name
                         })
-                        #folio.active = False
+                        folio.sudo().write({
+                            'active': False
+                        })
                         break
 
         return request.make_response(json.dumps({'state': 200,
